@@ -8,12 +8,12 @@ import {
 
 const route = express.Router();
 
-route.get("/getallprojects", (req, res, next) => {
+route.get("/getallprojects", (req, res) => {
   console.log("GET /getallprojects route hit");
   fetch(req, res);
 });
 
-route.get("/search", async (req, res, next) => {
+route.get("/search", async (req, res) => {
   const { pic, client, pm } = req.query;
   const query = {};
   if (pic) query.pic = { $regex: pic, $options: "i" };
@@ -28,17 +28,17 @@ route.get("/search", async (req, res, next) => {
   }
 });
 
-route.post("/create", (req, res, next) => {
+route.post("/create", (req, res) => {
   console.log("POST /create route hit");
   create(req, res);
 });
 
-route.put("/update/:id", (req, res, next) => {
+route.put("/update/:id", (req, res) => {
   console.log("PUT /update/:id route hit");
   update(req, res);
 });
 
-route.delete("/delete/:id", (req, res, next) => {
+route.delete("/delete/:id", (req, res) => {
   console.log("DELETE /delete/:id route hit");
   deleteProject(req, res);
 });

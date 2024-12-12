@@ -18,10 +18,11 @@ const allowedOrigins = process.env.FRONTEND_URLS?.split(",") || [];
 
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
+console.log("allowed origin:", allowedOrigins);
 
 // Middleware
 app.use(cors({ origin: allowedOrigins }));
@@ -36,6 +37,7 @@ io.on("connection", (socket) => {
 
   socket.on("createData", (newData) => {
     io.emit("dataCreated", newData);
+    console.log("this post updated with socket.io");
   });
 
   socket.on("updateData", (updatedData) => {
@@ -57,7 +59,7 @@ mongoose
   .then(() => {
     console.log("Database connected successfully.");
     server.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server running on http://0.0.0.0:${PORT}`);
+      console.log(`Server running`);
     });
   })
   .catch((error) => {
