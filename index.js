@@ -6,21 +6,21 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
 import route from "./routes/projectRoute.js";
-import http from "node:http";
-import { Server } from "socket.io";
+// import http from "node:http";
+// import { Server } from "socket.io";
 
 const app = express();
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
 const PORT = process.env.PORT || 5001;
 const MONGOURL = process.env.MONGO_URL;
 
-const io = new Server(server, {
-  cors: {
-    origin: ["https://blackmanager.netlify.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  },
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: ["https://blackmanager.netlify.app"],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//   },
+// });
 
 // Middleware
 app.use(cors({ origin: "https://blackmanager.netlify.app" }));
@@ -30,26 +30,26 @@ app.use(bodyParser.json());
 app.use("/api/report", route);
 
 // Real-time Updates
-io.on("connection", (socket) => {
-  console.log("Client connected:", socket.id);
+// io.on("connection", (socket) => {
+//   console.log("Client connected:", socket.id);
 
-  socket.on("createData", (newData) => {
-    io.emit("dataCreated", newData);
-    console.log("this post updated with socket.io");
-  });
+//   socket.on("createData", (newData) => {
+//     io.emit("dataCreated", newData);
+//     console.log("this post updated with socket.io");
+//   });
 
-  socket.on("updateData", (updatedData) => {
-    io.emit("dataUpdated", updatedData);
-  });
+//   socket.on("updateData", (updatedData) => {
+//     io.emit("dataUpdated", updatedData);
+//   });
 
-  socket.on("deleteData", (deletedId) => {
-    io.emit("dataDeleted", deletedId);
-  });
+//   socket.on("deleteData", (deletedId) => {
+//     io.emit("dataDeleted", deletedId);
+//   });
 
-  socket.on("disconnect", () => {
-    console.log("Client disconnected:", socket.id);
-  });
-});
+//   socket.on("disconnect", () => {
+//     console.log("Client disconnected:", socket.id);
+//   });
+// });
 
 // Database Connection
 mongoose
