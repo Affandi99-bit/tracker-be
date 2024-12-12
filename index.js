@@ -14,7 +14,7 @@ const server = http.createServer(app);
 
 const PORT = process.env.PORT || 5001;
 const MONGOURL = process.env.MONGO_URL;
-const allowedOrigins = process.env.FRONTEND_URLS?.split(",") || [];
+const allowedOrigins = "https://blackmanager.netlify.app";
 
 const io = new Server(server, {
   cors: {
@@ -25,7 +25,7 @@ const io = new Server(server, {
 console.log("allowed origin:", allowedOrigins);
 
 // Middleware
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 
 // Routes
