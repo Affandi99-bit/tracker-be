@@ -14,18 +14,16 @@ const server = http.createServer(app);
 
 const PORT = process.env.PORT || 5001;
 const MONGOURL = process.env.MONGO_URL;
-const allowedOrigins = "https://blackmanager.netlify.app";
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: ["https://blackmanager.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
-console.log("allowed origin:", allowedOrigins);
 
 // Middleware
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "https://blackmanager.netlify.app" }));
 app.use(bodyParser.json());
 
 // Routes
