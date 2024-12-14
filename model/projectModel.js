@@ -12,6 +12,7 @@ const projectSchema = new mongoose.Schema({
   final_file: { type: String },
   final_report_file: { type: String },
   note: { type: String },
+  payment: { type: String },
 });
 
 export default mongoose.model("projects", projectSchema);
