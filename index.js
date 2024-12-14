@@ -13,7 +13,9 @@ const PORT = process.env.PORT || 5001;
 const MONGOURL = process.env.MONGO_URL;
 
 // Middleware
-app.use(cors({ origin: "https://blackmanager.netlify.app" }));
+app.use(
+  cors({ origin: ["localhost:5173", "https://blackmanager.netlify.app"] })
+);
 app.use(bodyParser.json());
 
 // Routes
