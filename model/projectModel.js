@@ -6,13 +6,13 @@ const projectSchema = new mongoose.Schema({
   pm: { type: String, required: true },
   deadline: { type: String, required: true },
   status: [{ type: String, required: true }],
-  // crew: [
-  //   {
-  //     name: { type: String, required: true },
-  //     payment: { type: String },
-  //   },
-  // ],
-  crew: [{ type: String, required: true }],
+  crew: [
+    {
+      name: { type: String },
+      payment: { type: String },
+    },
+  ],
+  // crew: [{ type: String, required: true }],
   client: { type: String, required: true },
   pic: { type: String, required: true },
   final_file: { type: String },
