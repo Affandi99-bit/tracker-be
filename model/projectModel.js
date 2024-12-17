@@ -12,13 +12,12 @@ const projectSchema = new mongoose.Schema({
       payment: { type: String },
     },
   ],
-  // crew: [{ type: String, required: true }],
   client: { type: String, required: true },
   pic: { type: String, required: true },
   final_file: { type: String },
   final_report_file: { type: String },
   note: { type: String },
-  payment: [{ type: String }],
+  payment: { type: String },
 });
 
 export default mongoose.model("projects", projectSchema);
