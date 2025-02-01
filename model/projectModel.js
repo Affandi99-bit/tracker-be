@@ -1,25 +1,41 @@
 import mongoose from "mongoose";
 
-const projectSchema = new mongoose.Schema({
-  createdAt: { type: Date, default: Date.now },
-  title: { type: String, required: true },
-  pm: { type: String, required: true },
-  deadline: { type: String, required: true },
-  status: [{ type: String, required: true }],
-  crew: [
-    {
-      name: { type: String },
-      payment: { type: String },
-    },
-  ],
-  client: { type: String, required: true },
-  pic: { type: String, required: true },
-  final_file: { type: String },
-  final_report_file: { type: String },
-  note: { type: String },
-  payment: [{ type: String }],
-  categories: [{ type: String }],
-  type: [{ type: String }],
+const crewSchema = new mongoose.Schema({
+  name: { type: String },
+  roles: [{ type: String }],
 });
+
+const expenseSchema = new mongoose.Schema({
+  sewa: [{ type: String }],
+  operational: [{ type: String }],
+  orderlist: [{ type: String }],
+});
+
+const daySchema = new mongoose.Schema({
+  crew: [crewSchema],
+  expense: expenseSchema,
+  note: { type: String },
+});
+
+const projectSchema = new mongoose.Schema(
+  {
+    title: { type: String },
+    pm: { type: String },
+    deadline: Date,
+    status: [{ type: String }],
+    client: { type: String },
+    pic: { type: String },
+    final_file: { type: String },
+    final_report_file: { type: String },
+    note: { type: String },
+    categories: [{ type: String }],
+    type: [{ type: String }],
+    day: [daySchema],
+    dp: { type: String },
+    invoice: { type: String },
+    total: { type: String },
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model("projects", projectSchema);
