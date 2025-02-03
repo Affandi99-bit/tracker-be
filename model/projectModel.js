@@ -32,6 +32,7 @@ const projectSchema = new mongoose.Schema(
     type: [{ type: String }],
     day: [daySchema],
     dp: { type: String },
+    lunas: { type: String },
     invoice: { type: String },
     total: { type: String },
   },
