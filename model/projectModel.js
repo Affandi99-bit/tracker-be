@@ -17,7 +17,7 @@ const expenseSchema = new mongoose.Schema({
 
 const daySchema = new mongoose.Schema({
   crew: [crewSchema],
-  expense: expenseSchema,
+  expense: { expenseSchema },
   note: { type: String },
 });
 
