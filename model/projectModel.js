@@ -6,18 +6,23 @@ const crewSchema = new mongoose.Schema({
 });
 
 const expenseSchema = new mongoose.Schema({
-  sewa: [
+  rent: [
     { name: { type: String }, price: { type: String }, qty: { type: String } },
   ],
   operational: [
-    { name: { type: String }, price: { type: String }, qty: { type: String } },
+    {
+      name: { type: String },
+      price: { type: String },
+      qty: { type: String },
+      category: { type: String },
+    },
   ],
   orderlist: [{ name: { type: String }, qty: { type: String } }],
 });
 
 const daySchema = new mongoose.Schema({
   crew: [crewSchema],
-  expense: { expenseSchema },
+  expense: expenseSchema,
   note: { type: String },
 });
 
