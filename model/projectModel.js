@@ -30,7 +30,7 @@ const projectSchema = new mongoose.Schema(
   {
     title: { type: String },
     pm: { type: String },
-    deadline: Date,
+    deadline: { type: String },
     status: [{ type: String }],
     client: { type: String },
     pic: { type: String },
