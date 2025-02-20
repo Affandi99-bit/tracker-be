@@ -11,17 +11,17 @@ const BackupSchema = new mongoose.Schema({
 });
 
 const expenseSchema = new mongoose.Schema({
-  rent: [{ name: String, price: String, qty: String, note: String }],
+  rent: [{ name: String, price: Number, qty: Number, note: String }],
   operational: [
     {
       name: String,
-      price: String,
-      qty: String,
+      price: Number,
+      qty: Number,
       category: String,
       note: String,
     },
   ],
-  orderlist: [{ name: String, qty: String, note: String }],
+  orderlist: [{ name: String, qty: Number, note: String }],
 });
 
 const daySchema = new mongoose.Schema({
@@ -52,6 +52,7 @@ const projectSchema = new mongoose.Schema(
     lunas: String,
     invoice: String,
     total: String,
+    totalExpenses: String,
   },
   { timestamps: true }
 );
