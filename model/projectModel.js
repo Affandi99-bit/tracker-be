@@ -1,49 +1,57 @@
 import mongoose from "mongoose";
 
 const crewSchema = new mongoose.Schema({
-  name: { type: String },
-  roles: [{ type: String }],
+  name: String,
+  roles: [String],
+});
+
+const BackupSchema = new mongoose.Schema({
+  source: String,
+  target: String,
 });
 
 const expenseSchema = new mongoose.Schema({
-  rent: [
-    { name: { type: String }, price: { type: String }, qty: { type: String } },
-  ],
+  rent: [{ name: String, price: String, qty: String, note: String }],
   operational: [
     {
-      name: { type: String },
-      price: { type: String },
-      qty: { type: String },
-      category: { type: String },
+      name: String,
+      price: String,
+      qty: String,
+      category: String,
+      note: String,
     },
   ],
-  orderlist: [{ name: { type: String }, qty: { type: String } }],
+  orderlist: [{ name: String, qty: String, note: String }],
 });
 
 const daySchema = new mongoose.Schema({
+  date: String,
   crew: [crewSchema],
   expense: expenseSchema,
-  note: { type: String },
+  note: String,
+  backup: [BackupSchema],
+  template: Boolean,
 });
 
 const projectSchema = new mongoose.Schema(
   {
-    title: { type: String },
-    pm: { type: String },
-    deadline: { type: String },
-    status: [{ type: String }],
-    client: { type: String },
-    pic: { type: String },
-    final_file: { type: String },
-    final_report_file: { type: String },
-    note: { type: String },
-    categories: [{ type: String }],
-    type: [{ type: String }],
+    title: String,
+    pm: String,
+    start: String,
+    deadline: String,
+    status: [String],
+    client: String,
+    pic: String,
+    final_file: String,
+    final_report_file: String,
+    note: String,
+    categories: [String],
+    type: [String],
     day: [daySchema],
-    dp: { type: String },
-    lunas: { type: String },
-    invoice: { type: String },
-    total: { type: String },
+    dp: String,
+    lunas: String,
+    invoice: String,
+    total: String,
   },
   { timestamps: true }
 );
