@@ -30,6 +30,7 @@ const daySchema = new mongoose.Schema({
   expense: expenseSchema,
   note: String,
   backup: [BackupSchema],
+  totalExpenses: Number,
   template: Boolean,
 });
 
@@ -51,8 +52,7 @@ const projectSchema = new mongoose.Schema(
     dp: String,
     lunas: String,
     invoice: String,
-    total: String,
-    totalExpenses: String,
+    total: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
